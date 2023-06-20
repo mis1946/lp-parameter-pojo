@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.lp.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,19 +17,29 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Inv_Location")
+@Table(name="Model")
 
-public class UnitInvLocation implements Serializable, GEntity {
+public class UnitModel implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sLocatnCd")
-    private String sLocatnCd;
-    @Column(name = "sDescript")
-    private String sDescript;
+    @Column(name = "sModelCde")
+    private String sModelCde;
+    @Column(name = "sInvTypCd")
+    private String sInvTypCd;
     @Column(name = "sBriefDsc")
     private String sBriefDsc;
+    @Column(name = "sModelNme")
+    private String sModelNme;
+    @Column(name = "sDescript")
+    private String sDescript;
+    @Column(name = "sBrandCde")
+    private String sBrandCde;
+    @Column(name = "sCategrCd")
+    private String sCategrCd;
+    @Column(name = "cEndOfLfe")
+    private String cEndOfLfe;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,31 +51,43 @@ public class UnitInvLocation implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitInvLocation(){
+    public UnitModel(){
+        this.sModelCde = "";
+        this.sInvTypCd = "";
+        this.sBriefDsc = "";
+        this.sModelNme = "";
         this.sDescript = "";
+        this.sBrandCde = "";
+        this.sCategrCd = "";
+        this.cEndOfLfe = "0";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sLocatnCd");
+        laColumns.add("sModelCde");
+        laColumns.add("sInvTypCd");
         laColumns.add("sBriefDsc");
+        laColumns.add("sModelNme");
         laColumns.add("sDescript");
+        laColumns.add("sBrandCde");
+        laColumns.add("sCategrCd");
+        laColumns.add("cEndOfLfe");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setLocationCode(String sLocatnCd){
-        this.sLocatnCd = sLocatnCd;
+    public void setModelCode(String sModelCde){
+        this.sModelCde = sModelCde;
     }
-    public String getLocationCode(){
-        return sLocatnCd;
+    public String getModelCode(){
+        return sModelCde;
     }
     
-    public void setLocationName(String sDescript){
-        this.sDescript = sDescript;
+    public void setInvTypeCode(String sInvTypCd){
+        this.sInvTypCd = sInvTypCd;
     }
-    public String getLocationName(){
-        return sDescript;
+    public String getInvTypeCode(){
+        return sInvTypCd;
     }
     
     public void setBriefDescript(String sBriefDsc){
@@ -75,6 +97,40 @@ public class UnitInvLocation implements Serializable, GEntity {
         return sBriefDsc;
     }
     
+    public void setModelName(String sModelNme){
+        this.sModelNme = sModelNme;
+    }
+    public String getModelName(){
+        return sModelNme;
+    }
+    
+    public void setDescription(String sDescript){
+        this.sDescript = sDescript;
+    }
+    public String getDescription(){
+        return sDescript;
+    }
+    
+    public void setBrandCode(String sBrandCde){
+        this.sBrandCde = sBrandCde;
+    }
+    public String getBrandCode(){
+        return sBrandCde;
+    }
+    
+    public void setCategoryCode(String sCategrCd){
+        this.sCategrCd = sCategrCd;
+    }
+    public String getCategoryCode(){
+        return sCategrCd;
+    }
+    
+    public void setIsEndofLife(String cEndOfLfe){
+        this.cEndOfLfe = cEndOfLfe;
+    }
+    public String getIsEndofLife(){
+        return cEndOfLfe;
+    }
     public void setRecordStat(String cRecdStat){
         this.cRecdStat = cRecdStat;
     }
@@ -99,18 +155,18 @@ public class UnitInvLocation implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sLocatnCd != null ? sLocatnCd.hashCode() : 0);
+        hash += (sModelCde != null ? sModelCde.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitInvLocation)) {
+        if (!(object instanceof UnitModel)) {
             return false;
         }
-        UnitInvLocation other = (UnitInvLocation) object;
-        if ((this.sLocatnCd == null && other.sLocatnCd != null) || (this.sLocatnCd != null && !this.sLocatnCd.equals(other.sLocatnCd))) {
+        UnitModel other = (UnitModel) object;
+        if ((this.sModelCde == null && other.sModelCde != null) || (this.sModelCde != null && !this.sModelCde.equals(other.sModelCde))) {
             return false;
         }
         return true;
@@ -118,18 +174,23 @@ public class UnitInvLocation implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.integsys.pojo.UnitLocation[sLocatnCd=" + sLocatnCd + "]";
+        return "org.rmj.parameter.pojo.UnitModel[sModelCde=" + sModelCde + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sLocatnCd;
-            case 2: return sBriefDsc;
-            case 3: return sDescript;
-            case 4: return cRecdStat;
-            case 5: return sModified;
-            case 6: return dModified;
+            case 1: return sModelCde;
+            case 2: return sInvTypCd;
+            case 3: return sBriefDsc;
+            case 4: return sModelNme;
+            case 5: return sDescript;
+            case 6: return sBrandCde;
+            case 7: return sCategrCd;
+            case 8: return cEndOfLfe;
+            case 9: return cRecdStat;
+            case 10: return sModified;
+            case 11: return dModified;
             default: return null;
         }
     }
@@ -146,7 +207,7 @@ public class UnitInvLocation implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Inv_Location";
+        return "Model";
     }
 
     @Override
@@ -166,21 +227,36 @@ public class UnitInvLocation implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sLocatnCd = (String) foValue;
+                sModelCde = (String) foValue;
                 break;
             case 2:
-                sBriefDsc = (String) foValue;
+                sInvTypCd = (String) foValue;
                 break;
             case 3:
-                sDescript = (String) foValue;
+                sBriefDsc = (String) foValue;
                 break;
             case 4:
-                cRecdStat = (String) foValue;
+                sModelNme = (String) foValue;
                 break;
             case 5:
-                sModified = (String) foValue;
+                sDescript = (String) foValue;
                 break;
             case 6:
+                sBrandCde = (String) foValue;
+                break;
+            case 7:
+                sCategrCd = (String) foValue;
+                break;
+            case 8:
+                cEndOfLfe = (String) foValue;
+                break;
+            case 9:
+                cRecdStat = (String) foValue;
+                break;
+            case 10:
+                sModified = (String) foValue;
+                break;
+            case 11:
                 dModified = (Date) foValue;
                 break;
         }    
@@ -203,4 +279,5 @@ public class UnitInvLocation implements Serializable, GEntity {
     public void list() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

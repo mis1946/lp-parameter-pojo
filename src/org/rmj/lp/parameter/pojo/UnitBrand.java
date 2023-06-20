@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.lp.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,17 +17,19 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Measure")
+@Table(name="Brand")
 
-public class UnitMeasure implements Serializable, GEntity {
+public class UnitBrand implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sMeasurID")
-    private String sMeasurID;
-    @Column(name = "sMeasurNm")
-    private String sMeasurNm;
+    @Column(name = "sBrandCde")
+    private String sBrandCde;
+    @Column(name = "sInvTypCd")
+    private String sInvTypCd;
+    @Column(name = "sDescript")
+    private String sDescript;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -39,31 +41,40 @@ public class UnitMeasure implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitMeasure(){
-        this.sMeasurID = "";
-        this.sMeasurNm = "";
+    public UnitBrand(){
+        this.sBrandCde = "";
+        this.sInvTypCd = "";
+        this.sDescript = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sMeasurID");
-        laColumns.add("sMeasurNm");
+        laColumns.add("sBrandCde");
+        laColumns.add("sInvTypCd");
+        laColumns.add("sDescript");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setBrandCode(String sMeasurID){
-        this.sMeasurID = sMeasurID;
+    public void setBrandCode(String sBrandCde){
+        this.sBrandCde = sBrandCde;
     }
-    public String getMeasureID(){
-        return sMeasurID;
+    public String getBrandCode(){
+        return sBrandCde;
     }
     
-    public void setMeasureName(String sDescript){
-        this.sMeasurNm = sDescript;
+    public void setInvTypeCode(String sInvTypCd){
+        this.sInvTypCd = sInvTypCd;
     }
-    public String getMeasureName(){
-        return sMeasurNm;
+    public String getInvTypeCode(){
+        return sInvTypCd;
+    }
+    
+    public void setBrandName(String sDescript){
+        this.sDescript = sDescript;
+    }
+    public String getBrandName(){
+        return sDescript;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -90,18 +101,18 @@ public class UnitMeasure implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sMeasurID != null ? sMeasurID.hashCode() : 0);
+        hash += (sBrandCde != null ? sBrandCde.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitMeasure)) {
+        if (!(object instanceof UnitBrand)) {
             return false;
         }
-        UnitMeasure other = (UnitMeasure) object;
-        if ((this.sMeasurID == null && other.sMeasurID != null) || (this.sMeasurID != null && !this.sMeasurID.equals(other.sMeasurID))) {
+        UnitBrand other = (UnitBrand) object;
+        if ((this.sBrandCde == null && other.sBrandCde != null) || (this.sBrandCde != null && !this.sBrandCde.equals(other.sBrandCde))) {
             return false;
         }
         return true;
@@ -109,17 +120,18 @@ public class UnitMeasure implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitMeasure[sMeasurID=" + sMeasurID + "]";
+        return "org.rmj.parameter.pojo.UnitBrand[sBrandCde=" + sBrandCde + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sMeasurID;
-            case 2: return sMeasurNm;
-            case 3: return cRecdStat;
-            case 4: return sModified;
-            case 5: return dModified;
+            case 1: return sBrandCde;
+            case 2: return sInvTypCd;
+            case 3: return sDescript;
+            case 4: return cRecdStat;
+            case 5: return sModified;
+            case 6: return dModified;
             default: return null;
         }
     }
@@ -136,7 +148,7 @@ public class UnitMeasure implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Measure";
+        return "Brand";
     }
 
     @Override
@@ -156,18 +168,21 @@ public class UnitMeasure implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sMeasurID = (String) foValue;
+                sBrandCde = (String) foValue;
                 break;
             case 2:
-                sMeasurNm = (String) foValue;
+                sInvTypCd = (String) foValue;
                 break;
             case 3:
-                cRecdStat = (String) foValue;
+                sDescript = (String) foValue;
                 break;
             case 4:
-                sModified = (String) foValue;
+                cRecdStat = (String) foValue;
                 break;
             case 5:
+                sModified = (String) foValue;
+                break;
+            case 6:
                 dModified = (Date) foValue;
                 break;
         }    

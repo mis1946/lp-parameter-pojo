@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.lp.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,19 +17,24 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Color_Detail")
+@Table(name="Affiliated_Company")
 
-public class UnitColorDetail implements Serializable, GEntity {
+public class UnitAffiliatedCompany implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sColorIDx")
-    private String sColorIDx;
-    @Column(name = "sDescript")
-    private String sDescript;
-    @Column(name = "sColorCde")
-    private String sColorCde;
+    @Column(name = "sCompnyCd")
+    private String sCompnyCd;
+    
+    @Column(name = "sCompnyNm")
+    private String sCompnyNm;
+    
+    @Basic(optional = false)
+    @Column(name = "dAffiliat")
+    @Temporal(TemporalType.DATE)
+    private Date dAffiliat;
+    
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,40 +46,40 @@ public class UnitColorDetail implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitColorDetail(){
-        this.sColorIDx = "";
-        this.sDescript = "";
-        this.sColorCde = "";
+    public UnitAffiliatedCompany(){
+        this.sCompnyCd = "";
+        this.sCompnyNm = "";
+        this.dAffiliat = null;
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sColorIDx");
-        laColumns.add("sDescript");
-        laColumns.add("sColorCde");
+        laColumns.add("sCompnyCd");
+        laColumns.add("sCompnyNm");
+        laColumns.add("dAffiliat");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setColorID(String sColorCde){
-        this.sColorIDx = sColorCde;
+    public void setCompanyCode(String sCompnyCd){
+        this.sCompnyCd = sCompnyCd;
     }
-    public String getColorID(){
-        return sColorIDx;
-    }
-    
-    public void setColorName(String sDescript){
-        this.sDescript = sDescript;
-    }
-    public String getColorName(){
-        return sDescript;
+    public String getCompanyCode(){
+        return sCompnyCd;
     }
     
-    public void setColorCode(String sColorCde){
-        this.sColorCde = sColorCde;
+    public void setCompanyName(String sCompnyNm){
+        this.sCompnyNm = sCompnyNm;
     }
-    public String getColorCode(){
-        return sColorCde;
+    public String getCompanyName(){
+        return sCompnyNm;
+    }
+    
+    public void setDateAffiliated(Date dAffiliat){
+        this.dAffiliat = dAffiliat;
+    }
+    public Date getDateAffiliated(){
+        return dAffiliat;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -101,18 +106,18 @@ public class UnitColorDetail implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sColorCde != null ? sColorCde.hashCode() : 0);
+        hash += (sCompnyCd != null ? sCompnyCd.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitColorDetail)) {
+        if (!(object instanceof UnitAffiliatedCompany)) {
             return false;
         }
-        UnitColorDetail other = (UnitColorDetail) object;
-        if ((this.sColorCde == null && other.sColorCde != null) || (this.sColorCde != null && !this.sColorCde.equals(other.sColorCde))) {
+        UnitAffiliatedCompany other = (UnitAffiliatedCompany) object;
+        if ((this.sCompnyCd == null && other.sCompnyCd != null) || (this.sCompnyCd != null && !this.sCompnyCd.equals(other.sCompnyCd))) {
             return false;
         }
         return true;
@@ -120,15 +125,15 @@ public class UnitColorDetail implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitColorDetail[sColorCde=" + sColorCde + "]";
+        return "org.rmj.parameter.pojo.UnitAffiliatedCompany[sCompnyCd=" + sCompnyCd + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sColorIDx;
-            case 2: return sDescript;
-            case 3: return sColorCde;
+            case 1: return sCompnyCd;
+            case 2: return sCompnyNm;
+            case 3: return dAffiliat;
             case 4: return cRecdStat;
             case 5: return sModified;
             case 6: return dModified;
@@ -148,7 +153,7 @@ public class UnitColorDetail implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Color_Detail";
+        return "Affiliated_Company";
     }
 
     @Override
@@ -168,13 +173,13 @@ public class UnitColorDetail implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sColorIDx = (String) foValue;
+                sCompnyCd = (String) foValue;
                 break;
             case 2:
-                sDescript = (String) foValue;
+                sCompnyNm = (String) foValue;
                 break;
             case 3:
-                sColorCde = (String) foValue;
+                dAffiliat = (Date) foValue;
                 break;
             case 4:
                 cRecdStat = (String) foValue;
