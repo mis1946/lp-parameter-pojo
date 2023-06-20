@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.lp.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,58 +17,53 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Banks")
+@Table(name="Measure")
 
-public class UnitBank implements Serializable, GEntity {
+public class UnitMeasure implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sBankCode")
-    private String sBankCode;
-    
-    @Column(name = "sBankName")
-    private String sBankName;
-    
+    @Column(name = "sMeasurID")
+    private String sMeasurID;
+    @Column(name = "sMeasurNm")
+    private String sMeasurNm;
     @Column(name = "cRecdStat")
     private String cRecdStat;
-    
     @Column(name = "sModified")
     private String sModified;
-    
     @Basic(optional = false)
     @Column(name = "dModified")
-    
     @Temporal(TemporalType.TIMESTAMP)
     private Date dModified;
 
     LinkedList laColumns = null;
     
-    public UnitBank(){
-        this.sBankCode = "";
-        this.sBankName = "";
+    public UnitMeasure(){
+        this.sMeasurID = "";
+        this.sMeasurNm = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sBankCode");
-        laColumns.add("sBankName");
+        laColumns.add("sMeasurID");
+        laColumns.add("sMeasurNm");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setBankCode(String sBankCode){
-        this.sBankCode = sBankCode;
+    public void setBrandCode(String sMeasurID){
+        this.sMeasurID = sMeasurID;
     }
-    public String getBankCode(){
-        return sBankCode;
+    public String getMeasureID(){
+        return sMeasurID;
     }
     
-    public void setBankName(String sBankName){
-        this.sBankName = sBankName;
+    public void setMeasureName(String sDescript){
+        this.sMeasurNm = sDescript;
     }
-    public String getBankName(){
-        return sBankName;
+    public String getMeasureName(){
+        return sMeasurNm;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -95,18 +90,18 @@ public class UnitBank implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sBankCode != null ? sBankCode.hashCode() : 0);
+        hash += (sMeasurID != null ? sMeasurID.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitBank)) {
+        if (!(object instanceof UnitMeasure)) {
             return false;
         }
-        UnitBank other = (UnitBank) object;
-        if ((this.sBankCode == null && other.sBankCode != null) || (this.sBankCode != null && !this.sBankCode.equals(other.sBankCode))) {
+        UnitMeasure other = (UnitMeasure) object;
+        if ((this.sMeasurID == null && other.sMeasurID != null) || (this.sMeasurID != null && !this.sMeasurID.equals(other.sMeasurID))) {
             return false;
         }
         return true;
@@ -114,14 +109,14 @@ public class UnitBank implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitBank[sBankCode=" + sBankCode + "]";
+        return "org.rmj.parameter.pojo.UnitMeasure[sMeasurID=" + sMeasurID + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sBankCode;
-            case 2: return sBankName;
+            case 1: return sMeasurID;
+            case 2: return sMeasurNm;
             case 3: return cRecdStat;
             case 4: return sModified;
             case 5: return dModified;
@@ -141,7 +136,7 @@ public class UnitBank implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Banks";
+        return "Measure";
     }
 
     @Override
@@ -161,10 +156,10 @@ public class UnitBank implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sBankCode = (String) foValue;
+                sMeasurID = (String) foValue;
                 break;
             case 2:
-                sBankName = (String) foValue;
+                sMeasurNm = (String) foValue;
                 break;
             case 3:
                 cRecdStat = (String) foValue;

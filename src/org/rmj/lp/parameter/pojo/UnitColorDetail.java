@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.lp.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,21 +17,19 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Term")
+@Table(name="Color_Detail")
 
-public class UnitTerm implements Serializable, GEntity {
+public class UnitColorDetail implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sTermCode")
-    private String sTermCode;
+    @Column(name = "sColorIDx")
+    private String sColorIDx;
     @Column(name = "sDescript")
     private String sDescript;
-    @Column(name = "cCoverage")
-    private String cCoverage;
-    @Column(name = "nTermValx")
-    private Number nTermValx;
+    @Column(name = "sColorCde")
+    private String sColorCde;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -43,49 +41,40 @@ public class UnitTerm implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitTerm(){
-        this.sTermCode = "";
+    public UnitColorDetail(){
+        this.sColorIDx = "";
         this.sDescript = "";
-        this.cCoverage = "0";
-        this.nTermValx = 0;
+        this.sColorCde = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sTermCode");
+        laColumns.add("sColorIDx");
         laColumns.add("sDescript");
-        laColumns.add("cCoverage");
-        laColumns.add("nTermValx");
+        laColumns.add("sColorCde");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setTermID(String sTermCode){
-        this.sTermCode = sTermCode;
+    public void setColorID(String sColorCde){
+        this.sColorIDx = sColorCde;
     }
-    public String getTermID(){
-        return sTermCode;
+    public String getColorID(){
+        return sColorIDx;
     }
     
-    public void setTermName(String sDescript){
+    public void setColorName(String sDescript){
         this.sDescript = sDescript;
     }
-    public String getTermName(){
+    public String getColorName(){
         return sDescript;
     }
     
-    public void setCoverage(String cCoverage){
-        this.cCoverage = cCoverage;
+    public void setColorCode(String sColorCde){
+        this.sColorCde = sColorCde;
     }
-    public String getCoverage(){
-        return cCoverage;
-    }
-    
-    public void setTermValue(Number nTermValx){
-        this.nTermValx = nTermValx;
-    }
-    public Number getTermValue(){
-        return nTermValx;
+    public String getColorCode(){
+        return sColorCde;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -112,18 +101,18 @@ public class UnitTerm implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sTermCode != null ? sTermCode.hashCode() : 0);
+        hash += (sColorCde != null ? sColorCde.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitTerm)) {
+        if (!(object instanceof UnitColorDetail)) {
             return false;
         }
-        UnitTerm other = (UnitTerm) object;
-        if ((this.sTermCode == null && other.sTermCode != null) || (this.sTermCode != null && !this.sTermCode.equals(other.sTermCode))) {
+        UnitColorDetail other = (UnitColorDetail) object;
+        if ((this.sColorCde == null && other.sColorCde != null) || (this.sColorCde != null && !this.sColorCde.equals(other.sColorCde))) {
             return false;
         }
         return true;
@@ -131,19 +120,18 @@ public class UnitTerm implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitColor[sTermCode=" + sTermCode + "]";
+        return "org.rmj.parameter.pojo.UnitColorDetail[sColorCde=" + sColorCde + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sTermCode;
+            case 1: return sColorIDx;
             case 2: return sDescript;
-            case 3: return cCoverage;
-            case 4: return nTermValx;
-            case 5: return cRecdStat;
-            case 6: return sModified;
-            case 7: return dModified;
+            case 3: return sColorCde;
+            case 4: return cRecdStat;
+            case 5: return sModified;
+            case 6: return dModified;
             default: return null;
         }
     }
@@ -160,7 +148,7 @@ public class UnitTerm implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Term";
+        return "Color_Detail";
     }
 
     @Override
@@ -180,24 +168,21 @@ public class UnitTerm implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sTermCode = (String) foValue;
+                sColorIDx = (String) foValue;
                 break;
             case 2:
                 sDescript = (String) foValue;
                 break;
             case 3:
-                cCoverage = (String) foValue;
+                sColorCde = (String) foValue;
                 break;
             case 4:
-                nTermValx = (Number) foValue;
-                break;     
-            case 5:
                 cRecdStat = (String) foValue;
                 break;
-            case 6:
+            case 5:
                 sModified = (String) foValue;
                 break;
-            case 7:
+            case 6:
                 dModified = (Date) foValue;
                 break;
         }    

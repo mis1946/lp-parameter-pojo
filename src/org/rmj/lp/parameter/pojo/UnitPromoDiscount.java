@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.lp.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,23 +17,45 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Category")
+@Table(name="Promo_Discount")
 
-public class UnitCategory implements Serializable, GEntity {
+public class UnitPromoDiscount implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @Column(name = "sCategrCd")
-    private String sCategrCd;
+    @Column(name = "sDiscIDxx")
+    private String sDiscIDxx;
+    
     @Column(name = "sDescript")
     private String sDescript;
-    @Column(name = "sInvTypCd")
-    private String sInvTypCd;
+    
+    @Id
+    @Basic(optional = false)
+    @Column(name = "nDiscRate")
+    private Number nDiscRate;
+    
+    @Id
+    @Basic(optional = false)
+    @Column(name = "nAddDiscx")
+    private Number nAddDiscx;
+    
+    @Basic(optional = false)
+    @Column(name = "dDateFrom")
+    @Temporal(TemporalType.DATE)
+    private Date dDateFrom;
+    
+    @Basic(optional = false)
+    @Column(name = "dDateThru")
+    @Temporal(TemporalType.DATE)
+    private Date dDateThru;
+    
     @Column(name = "cRecdStat")
     private String cRecdStat;
+    
     @Column(name = "sModified")
     private String sModified;
+    
     @Basic(optional = false)
     @Column(name = "dModified")
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,40 +63,65 @@ public class UnitCategory implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitCategory(){
-        this.sCategrCd = "";
+    public UnitPromoDiscount(){
+        this.sDiscIDxx = "";
         this.sDescript = "";
-        this.sInvTypCd = "";
+        this.nDiscRate = 0.00;
+        this.nAddDiscx = 0.00;
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
-        laColumns.add("sCategrCd");
+        laColumns.add("sDiscIDxx");
         laColumns.add("sDescript");
-        laColumns.add("sInvTypCd");
+        laColumns.add("nDiscRate");
+        laColumns.add("nAddDiscx");
+        laColumns.add("dDateFrom");
+        laColumns.add("dDateThru");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
     }
     
-    public void setCategoryID(String sCategrID){
-        this.sCategrCd = sCategrID;
+    public void setDiscountID(String sDiscIDxx){
+        this.sDiscIDxx = sDiscIDxx;
     }
-    public String getCategoryID(){
-        return sCategrCd;
+    public String getDiscountID(){
+        return sDiscIDxx;
     }
     
-    public void setCategoryName(String sDescript){
+    public void setDescription(String sDescript){
         this.sDescript = sDescript;
     }
-    public String getCategoryName(){
+    public String getDescription(){
         return sDescript;
     }
     
-    public void setInvTypeCode(String sInvTypCd){
-        this.sInvTypCd = sInvTypCd;
+    public void setDiscountRate(Number nDiscRate){
+        this.nDiscRate = nDiscRate;
     }
-    public String getInvTypeCode(){
-        return sInvTypCd;
+    public Number getDiscountRate(){
+        return nDiscRate;
+    }
+    
+    public void setAddDisc(Number nAddDiscx){
+        this.nAddDiscx = nAddDiscx;
+    }
+    public Number getAddDisc(){
+        return nAddDiscx;
+    }
+    
+    public void setDateFrom(Date dDateFrom){
+        this.dDateFrom = dDateFrom;
+    }
+    public Date getDateFrom(){
+        return dDateFrom;
+    }
+    
+    public void setDateThru(Date dDateThru){
+        this.dDateThru = dDateThru;
+    }
+    public Date getDateThru(){
+        return dDateThru;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -101,18 +148,18 @@ public class UnitCategory implements Serializable, GEntity {
     @Override
     public int hashCode(){
         int hash = 0;
-        hash += (sCategrCd != null ? sCategrCd.hashCode() : 0);
+        hash += (sDiscIDxx != null ? sDiscIDxx.hashCode() : 0);
         return hash;
     }
     
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitCategory)) {
+        if (!(object instanceof UnitPromoDiscount)) {
             return false;
         }
-        UnitCategory other = (UnitCategory) object;
-        if ((this.sCategrCd == null && other.sCategrCd != null) || (this.sCategrCd != null && !this.sCategrCd.equals(other.sCategrCd))) {
+        UnitPromoDiscount other = (UnitPromoDiscount) object;
+        if ((this.sDiscIDxx == null && other.sDiscIDxx != null) || (this.sDiscIDxx != null && !this.sDiscIDxx.equals(other.sDiscIDxx))) {
             return false;
         }
         return true;
@@ -120,18 +167,21 @@ public class UnitCategory implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitCategory[sCategrCd=" + sCategrCd + "]";
+        return "org.rmj.parameter.pojo.UnitPromoDiscount[sDiscIDxx=" + sDiscIDxx + "]";
     }
     
     @Override
     public Object getValue(int fnColumn) {
         switch(fnColumn){
-            case 1: return sCategrCd;
+            case 1: return sDiscIDxx;
             case 2: return sDescript;
-            case 3: return sInvTypCd;
-            case 4: return cRecdStat;
-            case 5: return sModified;
-            case 6: return dModified;
+            case 3: return nDiscRate;
+            case 4: return nAddDiscx;
+            case 5: return dDateFrom;
+            case 6: return dDateThru;
+            case 7: return cRecdStat;
+            case 8: return sModified;
+            case 9: return dModified;
             default: return null;
         }
     }
@@ -148,7 +198,7 @@ public class UnitCategory implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Category";
+        return "Promo_Discount";
     }
 
     @Override
@@ -168,23 +218,23 @@ public class UnitCategory implements Serializable, GEntity {
     public void setValue(int fnColumn, Object foValue) {
         switch(fnColumn){
             case 1:
-                sCategrCd = (String) foValue;
-                break;
+                sDiscIDxx = (String) foValue; break;
             case 2:
-                sDescript = (String) foValue;
-                break;
+                sDescript = (String) foValue; break;
             case 3:
-                sInvTypCd = (String) foValue;
-                break;
+                nDiscRate = (Number) foValue; break;
             case 4:
-                cRecdStat = (String) foValue;
-                break;
+                nAddDiscx = (Number) foValue; break;     
             case 5:
-                sModified = (String) foValue;
-                break;
+                dDateFrom = (Date) foValue; break;         
             case 6:
-                dModified = (Date) foValue;
-                break;
+                dDateThru = (Date) foValue; break;     
+            case 7:
+                cRecdStat = (String) foValue; break;
+            case 8:
+                sModified = (String) foValue; break;
+            case 9:
+                dModified = (Date) foValue; break;
         }    
     }
 

@@ -1,7 +1,7 @@
 /**
  * @author  Michael Cuison
  */
-package org.rmj.cas.parameter.pojo;
+package org.rmj.lp.parameter.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,9 +17,9 @@ import org.rmj.appdriver.constants.RecordStatus;
 import org.rmj.appdriver.iface.GEntity;
 
 @Entity
-@Table(name="Category_Level4")
+@Table(name="Category")
 
-public class UnitCategoryLevel4 implements Serializable, GEntity {
+public class UnitCategory implements Serializable, GEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -28,8 +28,8 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
     private String sCategrCd;
     @Column(name = "sDescript")
     private String sDescript;
-    @Column(name = "sMainCatx")
-    private String sMainCatx;
+    @Column(name = "sInvTypCd")
+    private String sInvTypCd;
     @Column(name = "cRecdStat")
     private String cRecdStat;
     @Column(name = "sModified")
@@ -41,16 +41,16 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
 
     LinkedList laColumns = null;
     
-    public UnitCategoryLevel4(){
+    public UnitCategory(){
         this.sCategrCd = "";
         this.sDescript = "";
-        this.sMainCatx = "";
+        this.sInvTypCd = "";
         this.cRecdStat = RecordStatus.ACTIVE;
         
         laColumns = new LinkedList();
         laColumns.add("sCategrCd");
         laColumns.add("sDescript");
-        laColumns.add("sMainCatx");
+        laColumns.add("sInvTypCd");
         laColumns.add("cRecdStat");
         laColumns.add("sModified");
         laColumns.add("dModified");
@@ -70,11 +70,11 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
         return sDescript;
     }
     
-    public void setMainCategory(String sMainCatx){
-        this.sMainCatx = sMainCatx;
+    public void setInvTypeCode(String sInvTypCd){
+        this.sInvTypCd = sInvTypCd;
     }
-    public String getMainCategory(){
-        return sMainCatx;
+    public String getInvTypeCode(){
+        return sInvTypCd;
     }
     
     public void setRecordStat(String cRecdStat){
@@ -108,10 +108,10 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UnitCategoryLevel4)) {
+        if (!(object instanceof UnitCategory)) {
             return false;
         }
-        UnitCategoryLevel4 other = (UnitCategoryLevel4) object;
+        UnitCategory other = (UnitCategory) object;
         if ((this.sCategrCd == null && other.sCategrCd != null) || (this.sCategrCd != null && !this.sCategrCd.equals(other.sCategrCd))) {
             return false;
         }
@@ -120,7 +120,7 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
     
     @Override
     public String toString() {
-        return "org.rmj.parameter.pojo.UnitCategoryLevel3[sCategrCd=" + sCategrCd + "]";
+        return "org.rmj.parameter.pojo.UnitCategory[sCategrCd=" + sCategrCd + "]";
     }
     
     @Override
@@ -128,7 +128,7 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
         switch(fnColumn){
             case 1: return sCategrCd;
             case 2: return sDescript;
-            case 3: return sMainCatx;
+            case 3: return sInvTypCd;
             case 4: return cRecdStat;
             case 5: return sModified;
             case 6: return dModified;
@@ -148,7 +148,7 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
 
     @Override
     public String getTable() {
-        return "Category_Level4";
+        return "Category";
     }
 
     @Override
@@ -174,7 +174,7 @@ public class UnitCategoryLevel4 implements Serializable, GEntity {
                 sDescript = (String) foValue;
                 break;
             case 3:
-                sMainCatx = (String) foValue;
+                sInvTypCd = (String) foValue;
                 break;
             case 4:
                 cRecdStat = (String) foValue;
